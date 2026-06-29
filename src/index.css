@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: #06060f;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.3); border-radius: 4px; }
+
+button, a { -webkit-user-select: none; user-select: none; }
+input:focus { outline: none; }
+
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+@keyframes pulse-glow-red {
+  0%, 100% { box-shadow: 0 0 20px rgba(239,68,68,0.3), 0 0 60px rgba(239,68,68,0.1); }
+  50% { box-shadow: 0 0 30px rgba(239,68,68,0.5), 0 0 80px rgba(239,68,68,0.2); }
+}
+.animate-pulse-glow-red { animation: pulse-glow-red 1.5s ease-in-out infinite; }
+
+@keyframes pulse-glow-green {
+  0%, 100% { box-shadow: 0 0 15px rgba(16,185,129,0.3); }
+  50% { box-shadow: 0 0 25px rgba(16,185,129,0.5); }
+}
+.animate-pulse-glow-green { animation: pulse-glow-green 1.5s ease-in-out infinite; }
+
+@keyframes pulse-glow-violet {
+  0%, 100% { box-shadow: 0 0 15px rgba(139,92,246,0.2); }
+  50% { box-shadow: 0 0 25px rgba(139,92,246,0.4); }
+}
+.animate-pulse-glow-violet { animation: pulse-glow-violet 1.5s ease-in-out infinite; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: slideUp 0.4s ease-out; }
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-down { animation: slideDown 0.3s ease-out; }
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in { animation: scaleIn 0.3s ease-out; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float { animation: float 3s ease-in-out infinite; }
+
+@keyframes numberScroll {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+
+/* Glass morphism helper */
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.glass-violet {
+  background: rgba(139,92,246,0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(139,92,246,0.12);
+}
+
+/* Number slot machine */
+.number-slot-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.number-slot-container::before,
+.number-slot-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.number-slot-container::before {
+  top: 0;
+  background: linear-gradient(to bottom, #06060f 0%, transparent 100%);
+}
+
+.number-slot-container::after {
+  bottom: 0;
+  background: linear-gradient(to top, #06060f 0%, transparent 100%);
+}
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .safe-bottom { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+}
